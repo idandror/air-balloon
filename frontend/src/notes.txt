@@ -1,0 +1,19 @@
+features structure:
+
+main idea on feature based application is that all the imports you need will be from the same module,
+if you need to import something from another module, then this file should be in a shared folder
+
+assets
+auth
+components
+helpers- helper functions
+hooks-your own hooks
+pages
+redux
+utils
+mocking
+services
+validations
+interfaces
+constants
+tests
