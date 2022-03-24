@@ -24,7 +24,6 @@ import { resetError } from '../../balloon/reduxSlice/balloonSlice';
 import { APOLLO_GRAPHQL } from '../../../utils/constants';
 import Copyright from '../../../components/Copyright';
 import { loginGraphql } from '../api/login/loginGraphql';
-import authReducers from '../reduxSlice/authReducers';
 import { loginRest } from '../api/login/loginRest';
 import { User } from '../interface/userInterfaces';
 

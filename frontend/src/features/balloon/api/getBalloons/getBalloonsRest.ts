@@ -1,6 +1,6 @@
 import axios from "axios";
 import { isMock } from "../../../../utils/constants";
-import { mockGetBalloons } from "../../mock/mockBalloon";
+import { mockGetBalloons } from "../mockBalloon";
 import { API_URL } from "../../reduxSlice/balloonSlice";
 
 export const getBalloonsRest = async (token: String) => {

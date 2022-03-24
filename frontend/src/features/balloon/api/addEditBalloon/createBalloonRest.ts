@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { isMock } from '../../../../utils/constants';
 import { Balloon } from '../../interface/balloonInterfaces';
-import { mockCreateBalloon } from '../../mock/mockBalloon';
+import { mockCreateBalloon } from '../mockBalloon';
 import { API_URL } from '../../reduxSlice/balloonSlice';
 
 

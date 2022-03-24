@@ -16,7 +16,6 @@ mutation AddBalloon($balloon: InputBalloon!) {
 `;
 
 
-
 export const createEditBalloonGraphql = async (
   client: ApolloClient<object>,
   balloon: Balloon

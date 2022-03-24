@@ -1,6 +1,6 @@
 import MockAdapter from 'axios-mock-adapter';
 
-import data from './data';
+import data from '../mock/data';
 import {
   CREATE_BALLOON_ERROR,
   CREATE_BALLOON_ERROR_MESSAGE,
