@@ -29,12 +29,10 @@ namespace backend.Services
 		public async Task<Result<Balloon>> CreateBalloon(Balloon balloon)
 		{
 			ValidationResult result = validator.Validate(balloon);
-			Console.WriteLine(result);
 			if (!System.String.IsNullOrEmpty(balloon.description) || !System.String.IsNullOrEmpty(balloon.name))
 			{
 				await _balloonsCollection.InsertOneAsync(balloon);
 				return Result<Balloon>.Success(balloon);
-				//return HandleResult(await Mediator.Send(new Create.Command { Activity = activity }));
 			}
 			return Result<Balloon>.Failure(result.ToString());
 		}
@@ -47,7 +45,6 @@ namespace backend.Services
 		public async Task<Balloon> GetBalloon(string id)
 		{
 			var token = _context.Request.Headers["Authorization"].FirstOrDefault().Split(" ").Last();
-			Console.WriteLine(token);
 			Balloon bal = await _balloonsCollection.Find(balloon => balloon.Id == id).FirstAsync();
 			return bal;
 

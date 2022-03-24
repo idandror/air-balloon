@@ -65,7 +65,6 @@ namespace backend.Services
 		public async Task<Result<AppUser>> CreateUser(AppUser user)
 		{
 			ValidationResult result = validator.Validate(user);
-			Console.WriteLine(result);
 			AppUser existingUser = await users.Find(us => us.UserName == user.UserName).FirstOrDefaultAsync();
 			if (existingUser == null)
 			{

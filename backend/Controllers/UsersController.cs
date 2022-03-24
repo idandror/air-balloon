@@ -16,14 +16,10 @@ namespace backend.Controllers
 	[Route("api/[controller]")]
 	public class UsersController : BaseApiController
 	{
-		//private readonly TokenService tokenService;
 		private readonly UserService service;
-		//private readonly JwtUtils jwtUtils;
 		public UsersController(UserService _service)
 		{
-			//jwtUtils = _jwtUtils;
 			service = _service;
-			//tokenService = _tokenService;
 		}
 
 		[HttpGet]
@@ -67,31 +63,6 @@ namespace backend.Controllers
 			return Ok(new { token, userFromDb.Id, userFromDb.UserName });
 		}
 
-		//[HttpPost("login")]
-		//public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
-		//{
-		//	var user = await _userManager.FindByEmailAsync(loginDto.Email);
-
-
-		//	if (user == null)
-		//		return Unauthorized("Invalid User");
-		//	var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
-
-		//	//if (result.Succeeded)
-		//	//{
-		//	return CreateUserObject(user);
-		//	//}
-		//	//return Unauthorized("Invalid Password");
-
-		//}
-
-		//private UserDto CreateUserObject(AppUser user)
-		//{
-		//	return new UserDto
-		//	{
-		//		Token = tokenService.CreateToken(user),
-		//		Username = user.UserName
-		//	};
-		//}
+		
 	}
 }

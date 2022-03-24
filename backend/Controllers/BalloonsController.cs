@@ -15,13 +15,11 @@ namespace backend.Controllers
 	public class BalloonsController : BaseApiController
 	{
 		private readonly BalloonService _mongoDBService;
-		//private readonly UserService _service;
 
 		public BalloonsController(BalloonService balloonService)
 		{
 
 			_mongoDBService = balloonService;
-			//_service = service;
 		}
 
 		[HttpGet("{id}")]
@@ -66,15 +64,8 @@ namespace backend.Controllers
 			}
 			return HandleResult(await _mongoDBService.UpdateBalloon(balloon));
 
-			//return CreatedAtAction(nameof(Get), new { id = balloon.Id }, createdBalloon);
 		}
 
-		//[HttpPut("edit")]
-		//public async Task<IActionResult> Edit([FromBody] Balloon balloon)
-		//{
-		//	var updatedBalloon = HandleResult(await _mongoDBService.UpdateBalloon(balloon));
-		//	return updatedBalloon;
-		//}
 
 		[HttpDelete("{id}")]
 		public async Task<IActionResult> Delete(string id)

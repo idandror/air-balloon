@@ -11,12 +11,6 @@ namespace backend.Models.Users
 	public class AppUser
 	{
 
-		//public AppUser(string tok, string userName, string id)
-		//{
-		//	Id=id;
-		//	token=tok;
-		//	UserName=userName;
-		//}
 		[BsonId]
 		[BsonRepresentation(BsonType.ObjectId)]
 		public string Id { get; set; }
