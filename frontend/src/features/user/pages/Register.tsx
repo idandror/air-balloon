@@ -23,24 +23,7 @@ import { registerRest } from '../api/register/registerRest';
 import { useApolloClient } from '@apollo/client';
 import { APOLLO_GRAPHQL } from '../../../utils/constants';
 import { User } from '../interface/userInterfaces';
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <Link color="inherit" href="https://devalore.com/">
-        Devalore.com
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from '../components/Copyright';
 
 export default function Register() {
   const [userName, setUserName] = useState('');
@@ -216,7 +199,7 @@ export default function Register() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+        <Copyright />
       </Container>
     </>
   );

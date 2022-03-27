@@ -160,7 +160,7 @@ export const balloonSlice = createSlice({
       .addCase(createEditBalloon.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createEditBalloon.fulfilled, (state, action) => {
+      .addCase(createEditBalloon.fulfilled, (state, action?) => {
         state.isLoading = false;
         state.isError = undefined;
         state.isSuccess = true;

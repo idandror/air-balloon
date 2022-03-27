@@ -19,9 +19,7 @@ namespace backend.Middlewares
 			if (!System.String.IsNullOrEmpty(context.Request.Headers["Authorization"]))
 			{
 				var token = context.Request.Headers["Authorization"].First().Split(" ").Last();
-				Console.WriteLine(token);
 				string userId = userService.ValidateToken(token);
-				Console.WriteLine(userId);
 				if (userId != null)
 				{
 					// attach user to context on successful jwt validation

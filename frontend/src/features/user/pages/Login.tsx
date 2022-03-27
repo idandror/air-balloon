@@ -22,7 +22,7 @@ import Spinner from '../../../components/Spinner';
 import { useApolloClient } from '@apollo/client';
 import { resetError } from '../../balloon/reduxSlice/balloonSlice';
 import { APOLLO_GRAPHQL } from '../../../utils/constants';
-import Copyright from '../../../components/Copyright';
+import Copyright from '../components/Copyright';
 import { loginGraphql } from '../api/login/loginGraphql';
 import { loginRest } from '../api/login/loginRest';
 import { User } from '../interface/userInterfaces';
