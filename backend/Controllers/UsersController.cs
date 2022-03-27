@@ -54,7 +54,6 @@ namespace backend.Controllers
 			{
 				return Unauthorized();
 			}
-			Console.WriteLine(userFromDb);
 			string token = service.CreateToken(userFromDb);
 			if (token == null)
 			{

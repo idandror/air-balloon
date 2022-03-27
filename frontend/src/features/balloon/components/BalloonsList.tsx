@@ -48,7 +48,6 @@ const BalloonsList: React.FC = () => {
   };
 
   const goBackClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(e.currentTarget.accessKey);
 
     dispatch(resetBalloon());
   };

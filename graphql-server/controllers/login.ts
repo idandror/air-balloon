@@ -23,7 +23,6 @@ export const register = async (
     Name: name,
     Password: password,
   });
-  console.log(user._id);
   return { userName, token: createToken('id', user._id, '7d') };
 };
 

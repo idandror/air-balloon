@@ -121,7 +121,6 @@ namespace backend.Services
 			}
 			var tokenHandler = new JwtSecurityTokenHandler();
 			var tokenKey = Encoding.ASCII.GetBytes(_configuration.GetSection("JwtKey").ToString());
-			Console.WriteLine(tokenKey);
 			try
 			{
 				tokenHandler.ValidateToken(token, new TokenValidationParameters
