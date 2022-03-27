@@ -17,10 +17,7 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import {
-  createEditBalloon,
-  getBalloons,
-} from '../reduxSlice/balloonSlice';
+import { createEditBalloon, getBalloons } from '../reduxSlice/balloonSlice';
 import { useApolloClient } from '@apollo/client';
 import { APOLLO_GRAPHQL } from '../../../utils/constants';
 import balloonReducer from '../reduxSlice/balloonReducer';
@@ -181,9 +178,10 @@ const PopupForm: React.FC<{ balloon?: Balloon }> = ({ balloon }) => {
           setErrorMessage('Description should have max of 150 characters');
           return false;
         }
+        return true;
       }
     }
-    return true;
+    return false;
   };
 
   const checkCreateNewBalloon = () => {
