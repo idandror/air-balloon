@@ -1,28 +1,27 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { createStore, store } from './app/store';
-import App from './App';
-import Login from './features/user/pages/Login';
-import ReactDOM from 'react-dom';
-import { MockedProvider } from '@apollo/client/testing';
-import { loginQueryMock } from './features/user/api/login/loginMock';
-import { MemoryRouter, Router } from 'react-router-dom';
+import { createStore } from './app/store';
 import GraphqlProvider from './components/GraphqlProvider';
 import Home from './features/balloon/pages/Home';
+import BalloonsList from './features/balloon/components/BalloonsList';
+import { MemoryRouter } from 'react-router-dom';
 
-test('renders learn react link', () => {
-  const { getByText } = render(
-    <GraphqlProvider useMocks>
-      <Provider store={createStore()}>
-        <Home />
-      </Provider>
-    </GraphqlProvider>
-  );
+//test('renders learn react link', async () => {
+//  render(
+//    <MemoryRouter initialEntries={['/']}>
+//       <GraphqlProvider useMocks>
+///        <Provider store={createStore()}>
+//            <BalloonsList />
+//          </Provider>
+//       </GraphqlProvider>
+//      </MemoryRouter>,
+//  );
 
-  //expect(screen.getByText("User")).toBeInTheDocument();
-  expect(screen.getByLabelText(/User Name/i)).toBeInTheDocument();
-});
+//  //expect(screen.getByText('Balloons')).toBeInTheDocument();
+//  expect(await screen.findByText(/Balloons/i)).toBeInTheDocument();
+//  screen!.debug();
+//});
 
 //describe('Login component test', () => {
 //  let container: HTMLDivElement;

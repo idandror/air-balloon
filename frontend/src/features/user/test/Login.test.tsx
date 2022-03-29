@@ -1,15 +1,9 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  within,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { MemoryRouter } from 'react-router';
 import { Provider as ReduxProvider } from 'react-redux';
-import Login from './Login';
+import Login from '../pages/Login';
 import { createStore } from '../../../app/store';
 import GraphqlProvider from '../../../components/GraphqlProvider';
 
@@ -30,7 +24,7 @@ describe('LoginForm', () => {
     expect(screen.getByText('Password')).toBeInTheDocument();
   });
 
-  test('check login button click with right credentials', () => {
+  test('check login button click with wrong credentials', async () => {
     render(
       <MemoryRouter initialEntries={['/login', '/']}>
         <GraphqlProvider useMocks>
@@ -43,8 +37,9 @@ describe('LoginForm', () => {
     userEvent.type(screen.getByLabelText(/User Name/i), 'idan');
     userEvent.type(screen.getByLabelText(/Password/i), '12345!@#');
     expect(screen.getByRole('button', { name: /SIGN IN/i })).toBeEnabled();
-    fireEvent.click(screen.getByRole('button', { name: /SIGN IN/i }));
-    expect(screen.getByLabelText(/User Name/i)).toBeInTheDocument();
+    userEvent.click(screen.getByRole('button', { name: /SIGN IN/i }));
+    expect(await screen.findByText(/Wrong Username/i)).toBeInTheDocument();
+    screen!.debug();
   });
 
   test('check login with long username', () => {

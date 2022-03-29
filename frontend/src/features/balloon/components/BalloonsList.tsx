@@ -56,7 +56,7 @@ const BalloonsList: React.FC = () => {
     <>
       {isLoading && <Spinner />}
       <div className="ballonsform">
-        <h1>Ballons Form</h1>
+        <h1>Balloons Form</h1>
         <PopupForm balloon={balloon} />
       </div>
       <List

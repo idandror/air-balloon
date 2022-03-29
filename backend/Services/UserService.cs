@@ -98,7 +98,7 @@ namespace backend.Services
 			//};
 
 			var tokenHandler = new JwtSecurityTokenHandler();
-			var tokenKey = Encoding.ASCII.GetBytes(_configuration.GetSection("JwtKey").ToString());
+			var tokenKey = Encoding.ASCII.GetBytes(_configuration["JwtKey"]);
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
 				Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
@@ -120,7 +120,9 @@ namespace backend.Services
 				return null;
 			}
 			var tokenHandler = new JwtSecurityTokenHandler();
-			var tokenKey = Encoding.ASCII.GetBytes(_configuration.GetSection("JwtKey").ToString());
+			var tokenKey = Encoding.ASCII.GetBytes(_configuration["JwtKey"]);
+			Console.WriteLine("-------------------->>>>" + _configuration["JwtKey"]);
+
 			try
 			{
 				tokenHandler.ValidateToken(token, new TokenValidationParameters

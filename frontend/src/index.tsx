@@ -9,7 +9,7 @@ import GraphqlProvider from './components/GraphqlProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GraphqlProvider useMocks={false}>
+    <GraphqlProvider useMocks={true}>
       <Provider store={store}>
         <App />
       </Provider>
