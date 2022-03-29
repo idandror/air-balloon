@@ -39,7 +39,7 @@ describe('LoginForm', () => {
     expect(screen.getByRole('button', { name: /SIGN IN/i })).toBeEnabled();
     userEvent.click(screen.getByRole('button', { name: /SIGN IN/i }));
     expect(await screen.findByText(/Wrong Username/i)).toBeInTheDocument();
-    screen!.debug();
+    //screen!.debug();
   });
 
   test('check login with long username', () => {

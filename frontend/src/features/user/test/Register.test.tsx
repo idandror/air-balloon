@@ -17,8 +17,10 @@ test('renders Register page', async () => {
   );
 
   expect(screen.getByRole('button', { name: /SIGN UP/i })).toBeInTheDocument();
-//  expect(screen.getByRole('h1', { name: /Sign up/i })).toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { level: 1, name: /Sign up/i })
+  ).toBeInTheDocument();
 
   //  expect(await screen.findByLabelText(/Sign/i)).toBeInTheDocument();
-  screen!.debug();
+    screen!.debug();
 });
