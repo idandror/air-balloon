@@ -99,7 +99,6 @@ export default function Login() {
       return false;
     }
   };
-  
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -188,7 +187,11 @@ export default function Login() {
             >
               Sign In
             </Button>
-            {isError && <Alert severity="error">{message}</Alert>}
+            {isError && (
+              <Alert severity="error">
+                {message}
+              </Alert>
+            )}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

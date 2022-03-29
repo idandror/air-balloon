@@ -13,6 +13,7 @@ const user: User = {
 
 export const mockLogin = (userData: User) => {
   const mock = new MockAdapter(axios);
+
   mock.onPost(API_URL + '/login').reply(() => {
     if (
       userData.userName === user.userName &&
@@ -25,14 +26,13 @@ export const mockLogin = (userData: User) => {
   });
 };
 
-
 export const mockRegister = (userData: User) => {
-	const mock = new MockAdapter(axios);
-	mock.onPost(API_URL + '/register', userData).reply(() => {
-	  if (userData.userName && userData.password) {
-		return [200, userData];
-	  } else {
-		return [401];
-	  }
-	});
-  };
+  const mock = new MockAdapter(axios);
+  mock.onPost(API_URL + '/register', userData).reply(() => {
+    if (userData.userName && userData.password) {
+      return [200, userData];
+    } else {
+      return [401];
+    }
+  });
+};

@@ -5,8 +5,8 @@ import authReducers from './authReducers';
 //Get user from localstorage
 
 let user = null;
-if (sessionStorage.getItem('user')) {
-  user = JSON.parse(sessionStorage.getItem('user') || '');
+if (localStorage.getItem('user')) {
+  user = JSON.parse(localStorage.getItem('user') || '');
 }
 
 const initialState: authState = {
@@ -26,7 +26,7 @@ export const register = createAsyncThunk<
   try {
     const response = await registerRequest(user);
     if (response) {
-      sessionStorage.setItem('user', JSON.stringify(response));
+      localStorage.setItem('user', JSON.stringify(response));
     }
     return response;
   } catch (error) {
@@ -43,7 +43,7 @@ export const login = createAsyncThunk<
   try {
     const response = await loginRequest(user);
     if (response) {
-      sessionStorage.setItem('user', JSON.stringify(response));
+      localStorage.setItem('user', JSON.stringify(response));
     }
     return response;
   } catch (error) {

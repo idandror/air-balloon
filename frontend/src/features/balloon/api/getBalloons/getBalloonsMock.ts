@@ -3,8 +3,6 @@ import { MockedResponse } from '@apollo/client/testing';
 import data from '../../mock/data';
 import { GET_BALLOONS } from './getBalloonsGraphql';
 
-
-
 export const GET_BALLOON = gql`
   query getBalloon($balloonId: String!) {
     getBalloon(balloonId: $balloonId) {
@@ -26,7 +24,7 @@ export const getBalloonsQueryMock: MockedResponse<any>[] = [
       query: GET_BALLOONS,
     },
     result: {
-      data: { balloons: { data } },
+      data: { getBalloons: data },
     },
   },
   {

@@ -103,7 +103,7 @@ namespace backend.Services
 			{
 				Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
 				Expires = DateTime.UtcNow.AddHours(1),
-				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256)
 			};
 
 			var token = tokenHandler.CreateToken(tokenDescriptor);

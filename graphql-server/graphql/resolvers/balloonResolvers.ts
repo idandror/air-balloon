@@ -6,8 +6,9 @@ import { validateBalloon } from '../../middlewares/validators';
 
 const resolvers = {
   Query: {
-    getBalloons: async (_: undefined, {}, { token }: { token: string }) => {
+    getBalloons: async (_: undefined, { token }: { token: string }) => {
       await isAuth(token);
+
       return await Balloon.find({});
     },
     getBalloon: async (

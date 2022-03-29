@@ -5,7 +5,7 @@ import { API_URL } from '../../reduxSlice/balloonSlice';
 
 export const getBalloonsRest = async (token: String) => {
   if (isMock) {
-    mockGetBalloons(token);
+    return mockGetBalloons(token);
   }
   const config = {
     headers: {

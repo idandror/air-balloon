@@ -22,7 +22,7 @@ const GraphqlProvider: React.FC<GraphqlProviderProps> = ({
           ...loginQueryMock,
           ...getBalloonsQueryMock,
           ...createBalloonQueryMock,
-		  ...editBalloonQueryMock
+          ...editBalloonQueryMock,
         ]}
       >
         <>{children}</>

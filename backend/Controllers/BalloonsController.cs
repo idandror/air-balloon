@@ -35,7 +35,7 @@ namespace backend.Controllers
 		[HttpGet]
 		public async Task<List<Balloon>> GetAll()
 		{
-			string token = HttpContext.Request.Headers["Authorization"].FirstOrDefault().Split(" ").Last();
+			//string token = HttpContext.Request.Headers["Authorization"].FirstOrDefault().Split(" ").Last();
 			return await _mongoDBService.GetAllBalloons();
 		}
 
