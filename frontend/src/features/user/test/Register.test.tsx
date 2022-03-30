@@ -54,7 +54,6 @@ describe('Register Form', () => {
     userEvent.type(screen.getAllByLabelText(/PASSWORD/i)[0], '12345!@#');
     userEvent.type(screen.getAllByLabelText(/PASSWORD/i)[1], '12345');
     expect(screen.getByRole('button', { name: /SIGN UP/i })).toBeEnabled();
-    //userEvent.click(screen.getByRole('button', { name: /SIGN UP/i }));
     expect(screen.getByText(/PASSWORDS DO NOT MATCH/i)).toBeInTheDocument();
 
     //screen!.debug();
@@ -63,7 +62,7 @@ describe('Register Form', () => {
   test('renders Register page with correct password', async () => {
     const store = createStore();
     render(
-      <MemoryRouter initialEntries={['/register']}>
+      <MemoryRouter initialEntries={['/register', '/']}>
         <GraphqlProvider useMocks>
           <Provider store={store}>
             <Register />
@@ -79,15 +78,17 @@ describe('Register Form', () => {
     ).toBeInTheDocument();
     userEvent.type(screen.getAllByLabelText(/Name/i)[0], 'moshe');
     userEvent.type(screen.getAllByLabelText(/Name/i)[1], 'moshe');
-    userEvent.type(screen.getAllByLabelText(/PASSWORD/i)[0], '12345!@#');
-    userEvent.type(screen.getAllByLabelText(/PASSWORD/i)[1], '12345!@#');
+    userEvent.type(screen.getAllByLabelText(/PASSWORD/i)[0], '123456!@#');
+    userEvent.type(screen.getAllByLabelText(/PASSWORD/i)[1], '123456!@#');
     expect(screen.getByRole('button', { name: /SIGN UP/i })).toBeEnabled();
-    userEvent.click(screen.getByRole('button', { name: /SIGN UP/i }));
+    await waitFor(() =>
+      userEvent.click(screen.getByRole('button', { name: /SIGN UP/i }))
+    );
     expect(
       screen.queryByText(/PASSWORDS DO NOT MATCH/i)
     ).not.toBeInTheDocument();
     //userEvent.click(screen.getByRole('button', { name: /SIGN UP/i }));
-    //await waitFor(() => console.log(store.getState().auth));
+    await waitFor(() => console.log(store.getState().auth));
 
     //screen!.debug();
   });

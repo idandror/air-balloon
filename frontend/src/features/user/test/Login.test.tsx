@@ -44,9 +44,11 @@ describe('LoginForm', () => {
     userEvent.type(screen.getByLabelText(/User Name/i), 'idan');
     userEvent.type(screen.getByLabelText(/Password/i), '123456!@#');
     expect(screen.getByRole('button', { name: /SIGN IN/i })).toBeEnabled();
-    userEvent.click(screen.getByRole('button', { name: /SIGN IN/i }));
+    await waitFor(() =>
+      userEvent.click(screen.getByRole('button', { name: /SIGN IN/i }))
+    );
     expect(screen.queryByText(/Wrong Username/i)).not.toBeInTheDocument();
-    //await waitFor(() => console.log(store.getState().auth));
+    await waitFor(() => console.log(store.getState().auth));
 
     //screen!.debug();
   });

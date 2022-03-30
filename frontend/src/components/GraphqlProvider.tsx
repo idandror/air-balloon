@@ -6,6 +6,7 @@ import { getBalloonsQueryMock } from '../features/balloon/api/getBalloons/getBal
 import { createBalloonQueryMock } from '../features/balloon/api/addEditBalloon/createBalloonMock';
 import { editBalloonQueryMock } from '../features/balloon/mock/editBalloonMock';
 import { apolloClient } from '../app/apollo';
+import { registerQueryMock } from '../features/user/api/register/registerMock';
 
 interface GraphqlProviderProps {
   useMocks?: boolean;
@@ -19,6 +20,7 @@ const GraphqlProvider: React.FC<GraphqlProviderProps> = ({
     return (
       <MockedProvider
         mocks={[
+          ...registerQueryMock,
           ...loginQueryMock,
           ...getBalloonsQueryMock,
           ...createBalloonQueryMock,

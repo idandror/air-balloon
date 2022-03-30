@@ -1,6 +1,5 @@
-import { ApolloClient, gql } from "@apollo/client";
-import { User } from "../../interface/userInterfaces";
-
+import { ApolloClient, gql } from '@apollo/client';
+import { User } from '../../interface/userInterfaces';
 
 export const REGISTER = gql`
   mutation Register($userName: String!, $name: String!, $password: String!) {
@@ -12,12 +11,13 @@ export const REGISTER = gql`
 `;
 
 export const registerGraphql = async (
-	client: ApolloClient<object>,
-	user: User
-  ) => {
-	const { data } = await client.mutate({
-	  mutation: REGISTER,
-	  variables: user,
-	});
-	return data.register;
-  };
+  client: ApolloClient<object>,
+  user: User
+) => {
+  const { data } = await client.mutate({
+    mutation: REGISTER,
+    variables: user,
+  });
+
+  return data.register;
+};

@@ -88,12 +88,12 @@ export default function Register() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const userData: User = {
-      name,
       userName,
+      name,
       password,
     };
-    const valid = validate();
-    if (valid) {
+    //const valid = validate();
+    if (true) {
       dispatch(
         register({
           user: userData,

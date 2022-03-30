@@ -18,7 +18,6 @@ export const loginGraphql = async (
     mutation: LOGIN,
     variables: user,
   });
-  console.log(data);
 
   return data.login;
 };
