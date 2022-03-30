@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { MemoryRouter } from 'react-router';
@@ -6,6 +6,12 @@ import { Provider as ReduxProvider } from 'react-redux';
 import Login from '../pages/Login';
 import { createStore } from '../../../app/store';
 import GraphqlProvider from '../../../components/GraphqlProvider';
+
+jest.mock('../../../utils/constants.ts', () => ({
+  __esModule: true,
+  APOLLO_GRAPHQL: true,
+  isMock: false,
+}));
 
 describe('LoginForm', () => {
   test('validate empty inputs and showing error', () => {
@@ -24,21 +30,24 @@ describe('LoginForm', () => {
     expect(screen.getByText('Password')).toBeInTheDocument();
   });
 
-  test('check login button click with wrong credentials', async () => {
+  test('check login button click with good credentials', async () => {
+    const store = createStore();
     render(
       <MemoryRouter initialEntries={['/login', '/']}>
         <GraphqlProvider useMocks>
-          <ReduxProvider store={createStore()}>
+          <ReduxProvider store={store}>
             <Login />
           </ReduxProvider>
         </GraphqlProvider>
       </MemoryRouter>
     );
     userEvent.type(screen.getByLabelText(/User Name/i), 'idan');
-    userEvent.type(screen.getByLabelText(/Password/i), '12345!@#');
+    userEvent.type(screen.getByLabelText(/Password/i), '123456!@#');
     expect(screen.getByRole('button', { name: /SIGN IN/i })).toBeEnabled();
     userEvent.click(screen.getByRole('button', { name: /SIGN IN/i }));
-    expect(await screen.findByText(/Wrong Username/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Wrong Username/i)).not.toBeInTheDocument();
+    //await waitFor(() => console.log(store.getState().auth));
+
     //screen!.debug();
   });
 

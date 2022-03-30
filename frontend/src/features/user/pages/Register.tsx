@@ -34,6 +34,8 @@ export default function Register() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const client = useApolloClient();
+  const regexNumbers = new RegExp('(?=[0-9])');
+  const regexSpecial = new RegExp('(?=[!@#$%^&*])');
   const { user, isLoading, isSuccess, message, isError } = useAppSelector(
     (state) => state.auth
   );
@@ -75,7 +77,7 @@ export default function Register() {
       case 'password':
         setPassword(e.currentTarget.value);
         break;
-      case 'password2':
+      case 'pass2':
         setPassword2(e.currentTarget.value);
         break;
       default:
@@ -90,15 +92,51 @@ export default function Register() {
       userName,
       password,
     };
+    const valid = validate();
+    if (valid) {
+      dispatch(
+        register({
+          user: userData,
+          registerRequest: APOLLO_GRAPHQL
+            ? (user: User) => registerGraphql(client, user)
+            : registerRest,
+        })
+      );
+    } else {
+      toast.error('Please confirm your User Name and Password');
+    }
+  };
 
-    dispatch(
-      register({
-        user: userData,
-        registerRequest: APOLLO_GRAPHQL
-          ? (user: User) => registerGraphql(client, user)
-          : registerRest,
-      })
-    );
+  const validate = () => {
+    if (name && userName && password && password2) {
+      if (password === password2) {
+        if (userName.length < 20) {
+          //ok to register
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  const checkPassword = () => {
+    const number = regexNumbers.test(password);
+    const special = regexSpecial.test(password);
+    if (number && special) {
+      if (password.length > 7 && password.length < 13)
+        //if everything is ok
+        return true;
+    }
+    return false;
+  };
+  const checkPasswordsMatch = () => {
+    if (password === password2) return true;
+    return false;
+  };
+
+  const checkUserName = () => {
+    if (userName && userName.length < 20) return true;
+    return false;
   };
 
   return (
@@ -126,19 +164,25 @@ export default function Register() {
                 <TextField
                   autoComplete="given-name"
                   name="userName"
-                  required
                   fullWidth
+                  required
                   value={userName}
                   onChange={handleChange}
                   id="userName"
                   label="User Name"
+                  error={!checkUserName()}
+                  helperText={
+                    !checkUserName()
+                      ? 'Max Length is 20 characters'
+                      : 'Please enter your User Name'
+                  }
                   autoFocus
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
+                  required
                   value={name}
                   onChange={handleChange}
                   id="name"
@@ -149,38 +193,43 @@ export default function Register() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
+                  required
+                  role="textbox"
                   value={password}
                   onChange={handleChange}
+                  helperText={
+                    !checkPassword()
+                      ? 'Password must have a number and one special letter, between 8-12 characters'
+                      : 'Please enter your Password'
+                  }
+                  error={!checkPassword()}
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
-                  autoComplete="new-password"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
+                  required
+                  role="textbox"
                   value={password2}
                   onChange={handleChange}
                   name="confirm password"
                   label="Confirm Password"
                   type="password"
-                  id="password2"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
+                  id="pass2"
+                  error={!checkPasswordsMatch()}
+                  helperText={
+                    !checkPasswordsMatch()
+                      ? 'Passwords do not match'
+                      : 'Please Confirm your Passowrd'
                   }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
+              <Grid item xs={12}></Grid>
             </Grid>
             <Button
               type="submit"

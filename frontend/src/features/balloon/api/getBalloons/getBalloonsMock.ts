@@ -32,12 +32,7 @@ export const getBalloonsQueryMock: MockedResponse<any>[] = [
       query: GET_BALLOONS,
     },
     result: {
-      data: {
-        getBalloons: {
-          status: 200,
-          data: data,
-        },
-      },
+      data: { getBalloons: data },
     },
   },
 ];

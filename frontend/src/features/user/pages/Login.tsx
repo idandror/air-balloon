@@ -67,12 +67,9 @@ export default function Login() {
     const number = regexNumbers.test(password);
     const special = regexSpecial.test(password);
     if (number && special) {
-      if (password.length > 7 && password.length < 13) {
+      if (password.length > 7 && password.length < 13)
         //if everything is ok
         return true;
-      } else {
-        return false;
-      }
     }
     return false;
   };
@@ -82,11 +79,8 @@ export default function Login() {
   };
 
   const checkUserName = () => {
-    if (userName && userName.length < 20) {
-      return true;
-    } else {
-      return false;
-    }
+    if (userName && userName.length < 20) return true;
+    return false;
   };
 
   const validate = () => {
@@ -187,11 +181,7 @@ export default function Login() {
             >
               Sign In
             </Button>
-            {isError && (
-              <Alert severity="error">
-                {message}
-              </Alert>
-            )}
+            {isError && <Alert severity="error">{message}</Alert>}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

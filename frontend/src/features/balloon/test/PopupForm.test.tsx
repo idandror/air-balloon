@@ -19,7 +19,7 @@ test('renders Popup form', async () => {
   );
 
   expect(await screen.findByText(/Create New Balloon/i)).toBeInTheDocument();
-//  screen!.debug();
+  //  screen!.debug();
 });
 
 test('renders Popup form, press on create new balloon and the form pops correctly', async () => {
@@ -33,11 +33,32 @@ test('renders Popup form, press on create new balloon and the form pops correctl
     </MemoryRouter>
   );
 
-  expect(await screen.findByText(/Create/i)).toBeInTheDocument();
+  expect(screen.getByText(/Create/i)).toBeInTheDocument();
   expect(
     screen.getByRole('button', { name: /Create New Balloon/i })
   ).toBeInTheDocument();
   userEvent.click(screen.getByRole('button', { name: /Create New Balloon/i }));
   expect(screen.getByRole('button', { name: /SUBMIT/i })).toBeInTheDocument();
-//  screen!.debug();
+  //  screen!.debug();
+});
+
+test('press on create new balloon and the form pops correctly,submit button is disabled', async () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <GraphqlProvider useMocks>
+        <Provider store={createStore()}>
+          <PopupForm />
+        </Provider>
+      </GraphqlProvider>
+    </MemoryRouter>
+  );
+
+  expect(screen.getByText(/Create/i)).toBeInTheDocument();
+  expect(
+    screen.getByRole('button', { name: /Create New Balloon/i })
+  ).toBeInTheDocument();
+  userEvent.click(screen.getByRole('button', { name: /Create New Balloon/i }));
+  expect(screen.getByRole('button', { name: /SUBMIT/i })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: /SUBMIT/i })).toBeDisabled();
+  //  screen!.debug();
 });
