@@ -35,4 +35,12 @@ export const getBalloonsQueryMock: MockedResponse<any>[] = [
       data: { getBalloons: data },
     },
   },
+  {
+    request: {
+      query: GET_BALLOONS,
+    },
+    result: {
+      data: { getBalloons: data },
+    },
+  },
 ];

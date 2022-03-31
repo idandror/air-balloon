@@ -89,7 +89,6 @@ export const getBalloons = createAsyncThunk<
   async ({ getBalloonsRequest }, { getState, rejectWithValue }) => {
     try {
       const { auth } = getState() as { auth: authState };
-      console.log(auth);
 
       return await getBalloonsRequest(auth.user?.token!);
     } catch (err) {

@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { createStore } from '../../../app/store';
 import Register from '../pages/Register';
@@ -81,15 +81,13 @@ describe('Register Form', () => {
     userEvent.type(screen.getAllByLabelText(/PASSWORD/i)[0], '123456!@#');
     userEvent.type(screen.getAllByLabelText(/PASSWORD/i)[1], '123456!@#');
     expect(screen.getByRole('button', { name: /SIGN UP/i })).toBeEnabled();
-    await waitFor(() =>
-      userEvent.click(screen.getByRole('button', { name: /SIGN UP/i }))
-    );
+    userEvent.click(screen.getByRole('button', { name: /SIGN UP/i }));
 
-    await waitFor(() =>
-      expect(
-        screen.queryByText(/PASSWORDS DO NOT MATCH/i)
-      ).not.toBeInTheDocument()
-    );
+    await act(() => new Promise((r) => setTimeout(r, 2000)));
+    
+    expect(
+      screen.queryByText(/PASSWORDS DO NOT MATCH/i)
+    ).not.toBeInTheDocument();
     //console.log(store.getState().auth);
 
     //screen!.debug();

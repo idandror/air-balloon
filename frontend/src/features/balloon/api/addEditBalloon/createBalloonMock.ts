@@ -2,17 +2,17 @@ import { MockedResponse } from '@apollo/client/testing';
 import { Balloon } from '../../interface/balloonInterfaces';
 import { CREATE_BALLOON } from './createBalloonGraphql';
 
-export const createBalloonQueryMock: MockedResponse<{ balloon: Balloon }>[] = [
+export const createBalloonQueryMock: MockedResponse<{ addBalloon: Balloon }>[] = [
   {
     request: {
       query: CREATE_BALLOON,
       variables: {
-        name: 'apollo7',
+        name: 'apollo6',
       },
     },
     result: {
       data: {
-        balloon: {
+        addBalloon: {
           id: '6',
           name: 'apollo6',
           description: 'asdjaidhas',
@@ -34,7 +34,7 @@ export const createBalloonQueryMock: MockedResponse<{ balloon: Balloon }>[] = [
     },
     result: {
       data: {
-        balloon: {
+        addBalloon: {
           id: '7',
           name: 'apollo7',
           description: 'asdjaidhas',

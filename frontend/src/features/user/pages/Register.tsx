@@ -51,20 +51,6 @@ export default function Register() {
     //dispatch(reset());
   }, [isError, isSuccess, user, navigate, dispatch, message]);
 
-  //const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //  console.log(e.target.id);
-
-  //  setUserName(e.currentTarget.value);
-  //};
-  //const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //  setName(e.currentTarget.value);
-  //};
-  //const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //  setPassword(e.currentTarget.value);
-  //};
-  //const onChangePassword2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //  setPassword2(e.currentTarget.value);
-  //};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.id) {
@@ -92,8 +78,8 @@ export default function Register() {
       name,
       password,
     };
-    //const valid = validate();
-    if (true) {
+    const valid = validate();
+    if (valid) {
       dispatch(
         register({
           user: userData,

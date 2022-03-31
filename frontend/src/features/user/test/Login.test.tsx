@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { MemoryRouter } from 'react-router';
@@ -44,12 +50,9 @@ describe('LoginForm', () => {
     userEvent.type(screen.getByLabelText(/User Name/i), 'idan');
     userEvent.type(screen.getByLabelText(/Password/i), '123456!@#');
     expect(screen.getByRole('button', { name: /SIGN IN/i })).toBeEnabled();
-    await waitFor(() =>
-      userEvent.click(screen.getByRole('button', { name: /SIGN IN/i }))
-    );
-    await waitFor(() =>
-      expect(screen.queryByText(/Wrong Username/i)).not.toBeInTheDocument()
-    );
+    userEvent.click(screen.getByRole('button', { name: /SIGN IN/i }));
+    await act(() => new Promise((r) => setTimeout(r, 2000)));
+    expect(screen.queryByText(/Wrong Username/i)).not.toBeInTheDocument();
     //console.log(store.getState().auth);
 
     //screen!.debug();

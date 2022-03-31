@@ -6,10 +6,11 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import GraphqlProvider from './components/GraphqlProvider';
+import { APOLLO_GRAPHQL_USE_MOCK } from './utils/constants';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GraphqlProvider useMocks={true}>
+    <GraphqlProvider useMocks={APOLLO_GRAPHQL_USE_MOCK}>
       <Provider store={store}>
         <App />
       </Provider>
