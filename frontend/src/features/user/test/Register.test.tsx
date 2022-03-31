@@ -84,11 +84,13 @@ describe('Register Form', () => {
     await waitFor(() =>
       userEvent.click(screen.getByRole('button', { name: /SIGN UP/i }))
     );
-    expect(
-      screen.queryByText(/PASSWORDS DO NOT MATCH/i)
-    ).not.toBeInTheDocument();
-    //userEvent.click(screen.getByRole('button', { name: /SIGN UP/i }));
-    await waitFor(() => console.log(store.getState().auth));
+
+    await waitFor(() =>
+      expect(
+        screen.queryByText(/PASSWORDS DO NOT MATCH/i)
+      ).not.toBeInTheDocument()
+    );
+    //console.log(store.getState().auth);
 
     //screen!.debug();
   });

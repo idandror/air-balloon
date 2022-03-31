@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { MemoryRouter } from 'react-router';
@@ -33,8 +33,8 @@ describe('LoginForm', () => {
   test('check login button click with good credentials', async () => {
     const store = createStore();
     render(
-      <MemoryRouter initialEntries={['/login', '/']}>
-        <GraphqlProvider useMocks>
+      <MemoryRouter>
+        <GraphqlProvider useMocks={true}>
           <ReduxProvider store={store}>
             <Login />
           </ReduxProvider>
@@ -47,15 +47,17 @@ describe('LoginForm', () => {
     await waitFor(() =>
       userEvent.click(screen.getByRole('button', { name: /SIGN IN/i }))
     );
-    expect(screen.queryByText(/Wrong Username/i)).not.toBeInTheDocument();
-    await waitFor(() => console.log(store.getState().auth));
+    await waitFor(() =>
+      expect(screen.queryByText(/Wrong Username/i)).not.toBeInTheDocument()
+    );
+    //console.log(store.getState().auth);
 
     //screen!.debug();
   });
 
   test('check login with long username', () => {
     render(
-      <MemoryRouter initialEntries={['/login', '/']}>
+      <MemoryRouter>
         <GraphqlProvider useMocks>
           <ReduxProvider store={createStore()}>
             <Login />
