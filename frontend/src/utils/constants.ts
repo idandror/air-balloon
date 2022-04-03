@@ -4,4 +4,4 @@ export const TOTAL_TIME = TIME_STEP_IN_SECONDS * (NUM_OF_POSITIONS - 1);
 
 export const isMock = false;
 export const APOLLO_GRAPHQL = true;
-export const APOLLO_GRAPHQL_USE_MOCK = true;
+export const APOLLO_GRAPHQL_USE_MOCK = false;

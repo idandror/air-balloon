@@ -6,8 +6,6 @@ import {
   Link,
   Container,
   Typography,
-  Checkbox,
-  FormControlLabel,
   TextField,
   CssBaseline,
   Button,
@@ -50,7 +48,6 @@ export default function Register() {
     }
     //dispatch(reset());
   }, [isError, isSuccess, user, navigate, dispatch, message]);
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.id) {
@@ -108,6 +105,7 @@ export default function Register() {
   const checkPassword = () => {
     const number = regexNumbers.test(password);
     const special = regexSpecial.test(password);
+    if (password.length === 0) return true;
     if (number && special) {
       if (password.length > 7 && password.length < 13)
         //if everything is ok
@@ -121,7 +119,7 @@ export default function Register() {
   };
 
   const checkUserName = () => {
-    if (userName && userName.length < 20) return true;
+    if (userName.length === 0 || userName.length < 20) return true;
     return false;
   };
 
@@ -211,7 +209,7 @@ export default function Register() {
                   helperText={
                     !checkPasswordsMatch()
                       ? 'Passwords do not match'
-                      : 'Please Confirm your Passowrd'
+                      : 'Please Confirm your Password'
                   }
                 />
               </Grid>

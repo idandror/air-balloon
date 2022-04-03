@@ -34,7 +34,7 @@ describe('Register Form', () => {
     //screen!.debug();
   });
 
-  test('renders Register page with wrong passwords', async () => {
+  test('renders Register page with wrong password', async () => {
     render(
       <MemoryRouter initialEntries={['/register']}>
         <GraphqlProvider useMocks>
@@ -84,7 +84,7 @@ describe('Register Form', () => {
     userEvent.click(screen.getByRole('button', { name: /SIGN UP/i }));
 
     await act(() => new Promise((r) => setTimeout(r, 2000)));
-    
+
     expect(
       screen.queryByText(/PASSWORDS DO NOT MATCH/i)
     ).not.toBeInTheDocument();
